@@ -269,6 +269,15 @@ public:
     return true;
   }
 
+  // Network writing
+  WasmResult writeUpstream(std::string_view /* buffer */) override {
+    return unimplemented();
+  }
+
+  WasmResult writeDownstream(std::string_view /* buffer */) override {
+    return unimplemented();
+  }
+
   // HTTP
   WasmResult httpCall(std::string_view /* target */, const Pairs & /*request_headers */,
                       std::string_view /* request_body */, const Pairs & /* request_trailers */,
