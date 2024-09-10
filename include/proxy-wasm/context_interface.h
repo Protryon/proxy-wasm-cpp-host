@@ -262,6 +262,10 @@ public:
    * proxy-independent host code using the getBuffer() call.
    */
 
+  virtual WasmResult writeUpstream(std::string_view /* buffer */) = 0;
+
+  virtual WasmResult writeDownstream(std::string_view /* buffer */) = 0;
+
   /**
    * Call on a stream Context to indicate that a new network connection has been been created.
    * Calls onStart().

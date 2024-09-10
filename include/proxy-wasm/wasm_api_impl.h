@@ -278,6 +278,14 @@ inline WasmResult proxy_call_foreign_function(const char *function_name, size_t 
                                                          WR(results), WR(results_size)));
 }
 
+inline WasmResult proxy_write_upstream(const char *buffer_ptr, size_t buffer_size) {
+  return wordToWasmResult(exports::write_upstream(WR(buffer_ptr), WS(buffer_size)));
+}
+
+inline WasmResult proxy_write_downstream(const char *buffer_ptr, size_t buffer_size) {
+  return wordToWasmResult(exports::write_downstream(WR(buffer_ptr), WS(buffer_size)));
+}
+
 #undef WS
 #undef WR
 

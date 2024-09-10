@@ -252,6 +252,14 @@ proxy_wasm::WasmResult proxy_call_foreign_function(const char *function_name,
       function_name, function_name_size, arguments, arguments_size, results, results_size);
 }
 
+proxy_wasm::WasmResult proxy_write_upstream(const char *buffer_ptr, size_t buffer_size) {
+  return proxy_wasm::null_plugin::write_upstream(buffer_ptr), buffer_size);
+}
+
+proxy_wasm::WasmResult proxy_write_downstream(const char *buffer_ptr, size_t buffer_size) {
+  return proxy_wasm::null_plugin::write_downstream(buffer_ptr, buffer_size);
+}
+
 // following functions only exposed in dyn native contexts
 
 void *proxy_dyn_get_thread_context() {

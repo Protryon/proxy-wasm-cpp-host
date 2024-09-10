@@ -283,6 +283,30 @@ Word call_foreign_function(Word function_name, Word function_name_size, Word arg
   return res;
 }
 
+Word write_upstream(Word buffer_ptr, Word buffer_size) {
+  auto *context = contextOrEffectiveContext();
+  if (context == nullptr) {
+    return WasmResult::InternalFailure;
+  }
+  auto buffer = context->wasmVm()->getMemory(buffer_ptr, buffer_size);
+  if (!buffer) {
+    return WasmResult::InvalidMemoryAccess;
+  }
+  return context->writeUpstream(buffer.value());
+}
+
+Word write_downstream(Word buffer_ptr, Word buffer_size) {
+  auto *context = contextOrEffectiveContext();
+  if (context == nullptr) {
+    return WasmResult::InternalFailure;
+  }
+  auto buffer = context->wasmVm()->getMemory(buffer_ptr, buffer_size);
+  if (!buffer) {
+    return WasmResult::InvalidMemoryAccess;
+  }
+  return context->writeDownstream(buffer.value());
+}
+
 // SharedData
 Word get_shared_data(Word key_ptr, Word key_size, Word value_ptr_ptr, Word value_size_ptr,
                      Word cas_ptr) {
